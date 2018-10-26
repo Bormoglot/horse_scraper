@@ -9,7 +9,7 @@ from tqdm import tqdm
 
 def get_soup(url):
     try:
-        r = requests.get(url,timeout=6)
+        r = requests.get(url,timeout=60)
         r.raise_for_status()
     except requests.exceptions.HTTPError as errh:
         print ("Http Error:",errh)
@@ -176,7 +176,7 @@ def main(owner_id, start_year):
 
     file_name = str(owner_id) + '.csv'
 
-    with open(file_name, 'w', encoding='utf-8') as f:
+    with open(file_name, 'w', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(['horse_name', 'horse_url', 'race_url', 'race_date', 'owner', 'prize', 'currency'])
         for i in horse_lst:
