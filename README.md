@@ -1,6 +1,6 @@
 # About
 This is a web scraper for https://hippodrom.ru
-The output is a CSV file with fields:
+The output is an .xlsx or .csv file with fields:
 - `horse_name`: name of the horse,
 - `horse_url`: link to the horse's page,
 -  `race_url`: link to race page,
@@ -13,6 +13,11 @@ The output is a CSV file with fields:
 2. `cd horse_scraper`
 3. `python3 -m venv .`
 4. `pip3 install -r requirements.txt`
-5. `python3 horse_scraper.py <owner_id> --min_year <2010>` where `<owner_id>` are the last digits in urls like https://hippodrom.ru/modules/owners/owner.php?owner_id=582 and `--min_year <2010>` indicates the earliest rase year to parse.
+# Running
+`python3 horse_scraper.py <owner_id> --min_year <2010> --path <somewhere/there> -csv`
+- `<owner_id>` - the last digits in urls like https://hippodrom.ru/modules/owners/owner.php?owner_id=582
+- `--min_year <2010>` - optional, the earliest race year to parse. Default year is 2005.
+- `--path <somewhere/there>` - optional, path to the place to save results. By default creates directory 'results'.
+- `-csv` - change default .xlsx output format to .csv
 
-Or use `python3 horse_scraper.py --help` for help on arguments.
+For help on arguments use `python3 horse_scraper.py --help`.

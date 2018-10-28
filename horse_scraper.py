@@ -1,14 +1,15 @@
 import requests
-import csv
 import re
 import time
 import sys
+import pathlib
 
 from bs4 import BeautifulSoup
 from datetime import datetime
 from tqdm import tqdm
 
 import cli
+import output
 
 def get_soup(url):
     try:
@@ -160,7 +161,7 @@ def parse_race_page(race_url, horse_url):
     return owner
 
 
-def main(owner_id, start_year):
+def main(owner_id, start_year, path, csv):
     
     print(f'Starting scraping info for user ID {owner_id}...')
     
@@ -176,23 +177,17 @@ def main(owner_id, start_year):
         
         horse['races'] = races
 
+    output_path = pathlib.Path(path)
+    # Create dir if not there
+    output_path.mkdir(parents=True, exist_ok=True)
+        
+    header = ['horse_name', 'horse_url', 'race_url', 'race_date', 'owner', 'prize', 'currency']
+    if not csv:
+        output.write_xlsx(horse_lst=horse_lst, owner_id=owner_id, header=header, path=output_path)
+    else:
+        output.write_csv(horse_lst=horse_lst, owner_id=owner_id, header=header, path=output_path)
 
-    file_name = str(owner_id) + '.csv'
-
-    with open(file_name, 'w', encoding='utf-8', newline='') as f:
-        writer = csv.writer(f)
-        writer.writerow(['horse_name', 'horse_url', 'race_url', 'race_date', 'owner', 'prize', 'currency'])
-        for i in horse_lst:
-            for j in i['races']:
-                writer.writerow([i['horse_name'],
-                            i['horse_url'],
-                            j['race_url'],
-                            j['race_date'],
-                            j['owner'],
-                            j['prize'],
-                            j['currency']])
-
-    print('CSV is ready!')
+    print('Table is ready!')
 
 if __name__ == "__main__":
-    main(owner_id=cli.args.owner_id, start_year=cli.args.min_year)
+    main(owner_id=cli.args.owner_id, start_year=cli.args.min_year, path=cli.args.path, csv=cli.args.csv)
