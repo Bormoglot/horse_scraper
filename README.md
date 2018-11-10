@@ -3,6 +3,8 @@
 
 This script can help you answer the question, how much money the horses won for their owner: it compiles a table of all the horses of a horse owner, which got prizes.
 
+The script runs on python >= 3.6
+
 The output is an .xlsx or .csv file with fields:
 - `horse_name`: name of the horse,
 - `horse_url`: link to the horse's page,
