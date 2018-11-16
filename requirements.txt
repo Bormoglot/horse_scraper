@@ -1,4 +1,4 @@
 tqdm==4.26.0
-requests==2.18.4
+requests>=2.20
 openpyxl==2.5.3
 beautifulsoup4==4.6.3
