@@ -1,4 +1,6 @@
 # About
+A small webscraper for [Transparency International-Russia](https://transparency.org.ru/), which helped a [horse-related tax evasion investigation](https://transparency.org.ru/special/konikadyrova/).
+___
 [Hippodrom.ru](https://hippodrom.ru/) is a Russian website about horse racing. They maintain a database of [race horses](https://hippodrom.ru/modules/horses/horse.php), [horse owners](https://hippodrom.ru/modules/owners/owner.php), [breeders](https://hippodrom.ru/modules/breeders/breeder.php), race results, etc. However, you can't query the database in arbitrary way.
 
 This script can help you inquire, how much money the horses won for their owner: it compiles a table of all the horses of a horse owner, which got prizes.
